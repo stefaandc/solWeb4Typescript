@@ -1,5 +1,5 @@
 class Dobbelsteen {
-	_aantalOgen = 1;
+	private _aantalOgen = 1;
 
 	get aantalOgen() {
 		return this._aantalOgen;
@@ -10,8 +10,8 @@ class Dobbelsteen {
 }
 
 class Speler {
-	_score = 0;
-	_dobbelstenen: Dobbelsteen[] = [];
+	private _score = 0;
+	private _dobbelstenen: Dobbelsteen[] = [];
 	constructor(private _naam: string) {
 		for (let index = 0; index < 5; index++) {
 			this._dobbelstenen.push(new Dobbelsteen());
@@ -36,7 +36,7 @@ class Speler {
 }
 
 class Spel {
-	_spelerAanZet: Speler;
+	private _spelerAanZet: Speler;
 
 	constructor(private _spelers: Speler[]) {
 		this._spelerAanZet = _spelers[0];
