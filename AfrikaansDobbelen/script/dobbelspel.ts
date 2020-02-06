@@ -1,10 +1,10 @@
 class Dobbelsteen {
 	private _aantalOgen = 1;
 
-	get aantalOgen() {
+	get aantalOgen(): number {
 		return this._aantalOgen;
 	}
-	rol() {
+	rol(): void {
 		this._aantalOgen = Math.floor(Math.random() * 6) + 1;
 	}
 }
@@ -17,16 +17,16 @@ class Speler {
 			this._dobbelstenen.push(new Dobbelsteen());
 		}
 	}
-	get score() {
+	get score(): number {
 		return this._score;
 	}
-	get naam() {
+	get naam(): string {
 		return this._naam;
 	}
-	get dobbelstenen() {
+	get dobbelstenen(): Dobbelsteen[] {
 		return this._dobbelstenen;
 	}
-	speel() {
+	speel(): void {
 		this._dobbelstenen.forEach((dobbelsteen: Dobbelsteen) => {
 			dobbelsteen.rol();
 			if (dobbelsteen.aantalOgen === 1) this._score += 100;
@@ -41,28 +41,28 @@ class Spel {
 	constructor(private _spelers: Speler[]) {
 		this._spelerAanZet = _spelers[0];
 	}
-	get aantalSpelers() {
+	get aantalSpelers(): number {
 		return this._spelers.length;
 	}
-	get spelerAanZet() {
+	get spelerAanZet(): Speler {
 		return this._spelerAanZet;
 	}
-	get heeftWinnaar() {
+	get heeftWinnaar(): boolean {
 		return (
 			this._spelers.filter((speler: Speler) => speler.score >= 1000).length > 0
 		);
 	}
-	get scoreOverzicht() {
+	get scoreOverzicht(): string {
 		let resultaat = '';
 		this._spelers.forEach((speler: Speler) => {
 			resultaat += `${speler.naam}: ${speler.score}\n`;
 		});
 		return resultaat;
 	}
-	speel() {
+	speel(): void {
 		if (!this.heeftWinnaar) this._spelerAanZet.speel();
 	}
-	bepaalVolgendeSpeler() {
+	bepaalVolgendeSpeler(): void {
 		if (!this.heeftWinnaar) {
 			this._spelerAanZet = this._spelers[
 				(this._spelers.indexOf(this._spelerAanZet) + 1) % this.aantalSpelers
